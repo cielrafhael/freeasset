@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Detail - Free Assets Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">Free Assets Hub</a></div>
+    </header>
+
+    <div class="breadcrumb" id="breadcrumb">
+        <a href="index.html">Home</a> > <span id="bc-category">Category</span> > <span id="bc-title">Asset</span>
+    </div>
+
+    <main class="asset-detail-container">
+        <div class="asset-preview">
+            <img id="detailImage" src="" alt="Asset Preview" loading="lazy">
+        </div>
+        
+        <div class="asset-info">
+            <h1 id="detailTitle">Loading...</h1>
+            <p id="detailCategory" class="badge"></p>
+            
+            <div class="meta-data">
+                <p><strong>Resolution:</strong> <span id="detailResolution"></span></p>
+                <p><strong>Format:</strong> <span id="detailFormat"></span></p>
+                <p><strong>Downloads:</strong> <span id="detailDownloads"></span></p>
+            </div>
+
+            <div class="tags-container" id="detailTags"></div>
+
+            <a id="downloadBtn" href="#" class="btn-large download-btn" download>
+                Download Free (<span id="detailFormatBtn"></span>)
+            </a>
+            <p class="license-note">Free for personal and commercial use.</p>
+            
+            <div class="social-share">
+                <span>Share:</span>
+                <button onclick="copyLink()">Copy Link</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Trigger specific detail load
+        document.addEventListener('DOMContentLoaded', loadAssetDetails);
+    </script>
+</body>
+</html>
