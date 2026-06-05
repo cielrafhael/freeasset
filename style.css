@@ -203,3 +203,51 @@ body {
     min-height: 100vh;
     margin: 0;
 }
+
+
+/* Styling Newsletter di dalam Footer */
+.newsletter {
+    text-align: center;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 500px; /* Agar tidak terlalu lebar di layar desktop */
+}
+
+.newsletter h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.newsletter p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+#newsletterForm {
+    display: flex;
+    gap: 10px;
+}
+
+#newsletterForm input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #333;
+    background: #0f1115;
+    color: white;
+}
+
+#newsletterForm button {
+    padding: 12px 20px;
+    border-radius: 6px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#newsletterForm button:hover {
+    background: var(--accent-hover);
+}
