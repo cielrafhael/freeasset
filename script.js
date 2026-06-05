@@ -8,17 +8,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Fetch JSON Database
+// Ganti bagian fetchAssets di script.js Anda dengan ini:
 async function fetchAssets() {
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS0YvIIusJAst868QBaUTeJpalY2ANvBMF9pb1qdmu31G1KYes7QZqX_f1CD74TRapQ7eENKhOM5a8A/pub?output=csv'; // Masukkan link hasil publish tadi di sini
     try {
-        const response = await fetch('assets.json');
-        allAssets = await response.json();
+        const response = await fetch(sheetUrl);
+        const data = await response.text();
         
-        // If on homepage/catalog, render grid
-        if (document.getElementById('assetGrid')) {
-            renderGrid(allAssets);
-        }
+        // Mengubah CSV menjadi JSON secara otomatis
+        const rows = data.split('\n').slice(1);
+        allAssets = rows.map(row => {
+            const cols = row.split(',');
+            return {
+                id: cols[0],
+                title: cols[1],
+                category: cols[2],
+                resolution: cols[3],
+                format: cols[4],
+                thumbnail: cols[5],
+                preview: cols[6],
+                downloadUrl: cols[7],
+                downloads: parseInt(cols[8]),
+                featured: cols[9] === 'true',
+                tags: cols[10].split(';') // Pakai titik koma untuk pisahkan tag
+            };
+        });
+        
+        renderGrid(allAssets);
     } catch (error) {
-        console.error('Error loading assets:', error);
+        console.error('Gagal mengambil data dari Google Sheets:', error);
     }
 }
 
