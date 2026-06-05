@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kategori - Free Assets Hub</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Free Assets Hub</div>
+        <nav><a href="index.html">Kembali ke Home</a></nav>
+    </header>
+
+    <main>
+        <h2 id="categoryTitle">Memuat Aset...</h2>
+        <div id="assetGrid" class="asset-grid"></div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Saat halaman dimuat, ambil kategori dari URL dan tampilkan
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const cat = params.get('cat');
+            document.getElementById('categoryTitle').textContent = "Kategori: " + cat;
+            
+            // Tunggu data fetchAssets selesai dari script.js
+            setTimeout(() => {
+                const filtered = allAssets.filter(a => a.category === cat);
+                renderGrid(filtered);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
