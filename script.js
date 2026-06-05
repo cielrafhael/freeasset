@@ -167,3 +167,21 @@ function copyLink() {
     navigator.clipboard.writeText(window.location.href);
     alert('Link copied to clipboard!');
 }
+
+
+// Fungsi untuk memuat iklan ke elemen tertentu
+async function loadAds() {
+    const adContainers = document.querySelectorAll('.ad-container');
+    const response = await fetch('ads.html');
+    const adContent = await response.text();
+    
+    adContainers.forEach(container => {
+        // Cek jika wadah iklan kosong, lalu isi
+        if (container.innerHTML.trim() === "") {
+            container.innerHTML = adContent;
+        }
+    });
+}
+
+// Jalankan saat halaman dimuat
+document.addEventListener('DOMContentLoaded', loadAds);
