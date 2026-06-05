@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Generate JSON</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-form { max-width: 600px; margin: 40px auto; background: var(--card-bg); padding: 30px; border-radius: 12px; }
+        .admin-form input, .admin-form select { width: 100%; padding: 10px; margin-bottom: 15px; background: var(--bg); color: var(--text); border: 1px solid var(--text-secondary); border-radius: 4px; }
+        .admin-form label { display: block; margin-bottom: 5px; color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Admin Dashboard</div>
+    </header>
+    <main>
+        <div class="admin-form">
+            <h2>Add New Asset</h2>
+            <form id="addAssetForm">
+                <label>Title</label>
+                <input type="text" id="title" required>
+                
+                <label>Category</label>
+                <select id="category">
+                    <option>Textures</option>
+                    <option>Backgrounds</option>
+                    <option>Overlays</option>
+                    <option>Mockups</option>
+                    <option>PNG Assets</option>
+                </select>
+
+                <label>Resolution</label>
+                <input type="text" id="resolution" placeholder="e.g., 6000x4000" required>
+
+                <label>Format</label>
+                <input type="text" id="format" placeholder="JPG, PNG, PSD" required>
+
+                <label>Thumbnail URL</label>
+                <input type="text" id="thumbnail" placeholder="images/thumb.jpg" required>
+
+                <label>Cloudflare R2 Download URL</label>
+                <input type="text" id="downloadUrl" placeholder="https://pub-your-r2.r2.dev/file.zip" required>
+
+                <label>Tags (comma separated)</label>
+                <input type="text" id="tags" placeholder="grunge, dark, concrete">
+
+                <button type="submit" class="btn-large">Generate JSON Entry</button>
+            </form>
+            <br>
+            <textarea id="jsonOutput" style="width:100%; height:150px; background:#000; color:#0f0;" readonly></textarea>
+            <button id="downloadJsonBtn" style="margin-top:10px;">Download Updated assets.json</button>
+        </div>
+    </main>
+
+    <script>
+        let currentAssets = [];
+        
+        // Try to load existing
+        fetch('assets.json').then(r => r.json()).then(data => currentAssets = data).catch(e => console.log('Starting fresh JSON'));
+
+        document.getElementById('addAssetForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newAsset = {
+                id: Date.now(),
+                title: document.getElementById('title').value,
+                category: document.getElementById('category').value,
+                resolution: document.getElementById('resolution').value,
+                format: document.getElementById('format').value,
+                thumbnail: document.getElementById('thumbnail').value,
+                preview: document.getElementById('thumbnail').value, // Assuming same for now
+                downloadUrl: document.getElementById('downloadUrl').value,
+                downloads: 0,
+                featured: false,
+                tags: document.getElementById('tags').value.split(',').map(t => t.trim())
+            };
+            
+            currentAssets.unshift(newAsset);
+            document.getElementById('jsonOutput').value = JSON.stringify(currentAssets, null, 2);
+        });
+
+        document.getElementById('downloadJsonBtn').addEventListener('click', () => {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentAssets, null, 2));
+            const dlAnchorElem = document.createElement('a');
+            dlAnchorElem.setAttribute("href", dataStr);
+            dlAnchorElem.setAttribute("download", "assets.json");
+            dlAnchorElem.click();
+        });
+    </script>
+</body>
+</html>
