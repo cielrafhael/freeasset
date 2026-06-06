@@ -12,11 +12,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-    align-items: stretch; /* Ubah dari center ke stretch agar konten melebar */
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-main);
+    line-height: 1.6;
 }
 
 a { text-decoration: none; color: var(--text); }
@@ -79,21 +78,16 @@ main { padding: 40px 5%; max-width: 1600px; margin: 0 auto; }
     background: rgba(99, 102, 241, 0.1); color: var(--accent); border-color: var(--accent);
 }
 
+/* Asset Grid */
 .asset-grid {
     display: grid;
-    /* Ini rahasianya: kolom akan menyesuaikan lebar layar */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-auto-rows: minmax(100px, auto);
-    gap: 20px;
-    padding: 20px;
-    width: 90%;
-    margin: 0 auto; /* Menjaga agar grid tetap di tengah layar */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
 }
 
 /* Asset Card */
 .asset-card {
     background: var(--card-bg);
-    margin-bottom: 20px;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
@@ -164,96 +158,3 @@ main { padding: 40px 5%; max-width: 1600px; margin: 0 auto; }
 /* Utils & Ads */
 .hidden { display: none !important; }
 .ad-container { width: 100%; min-height: 90px; background: #222; margin: 20px 0; display: flex; align-items: center; justify-content: center; color: #555; }
-
-/* --- FOOTER MODERN --- */
-footer {
-    background-color: #171a21;
-    color: #9ca3af;
-    padding: 60px 5% 30px 5%;
-    margin-top: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    text-align: center;
-}
-
-.footer-links {
-    display: flex;
-    gap: 30px;
-    margin-bottom: 10px;
-}
-
-.footer-links a {
-    color: #ffffff;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-links a:hover {
-    color: #6366f1;
-}
-
-.copyright {
-    font-size: 0.8rem;
-    color: #9ca3af;
-}
-
-/* Memastikan footer menempel di bawah */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    margin: 0;
-}
-
-
-/* Styling Newsletter di dalam Footer */
-.newsletter {
-    text-align: center;
-    margin-bottom: 40px;
-    width: 100%;
-    max-width: 500px; /* Agar tidak terlalu lebar di layar desktop */
-}
-
-.newsletter h2 {
-    margin-bottom: 10px;
-    font-size: 1.5rem;
-}
-
-.newsletter p {
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-}
-
-#newsletterForm {
-    display: flex;
-    gap: 10px;
-}
-
-#newsletterForm input {
-    flex: 1;
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid #333;
-    background: #0f1115;
-    color: white;
-}
-
-#newsletterForm button {
-    padding: 12px 20px;
-    border-radius: 6px;
-    background: var(--accent);
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-#newsletterForm button:hover {
-    background: var(--accent-hover);
-}
