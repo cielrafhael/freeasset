@@ -1,24 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Assets Hub - High Quality Digital Design Resources</title>
+    <meta name="description" content="Download free premium textures, backgrounds, overlays, mockups, and PNG assets. High resolution resources for creative professionals.">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Free Assets Hub - Digital Design Resources">
+    <meta property="og:description" content="Download free premium textures, backgrounds, overlays, mockups, and PNG assets.">
+    <meta property="og:image" content="https://yourdomain.com/images/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <link rel="canonical" href="https://yourdomain.com/">
     <link rel="stylesheet" href="style.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Free Assets Hub",
+      "url": "https://yourdomain.com/",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://yourdomain.com/search.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 </head>
 <body>
     <header>
         <div class="logo">Free Assets Hub</div>
-        <nav><a href="index.html">Home</a></nav>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="category.html?cat=Textures">Textures</a>
+            <a href="category.html?cat=Mockups">Mockups</a>
+            <a href="category.html?cat=Overlays">Overlays</a>
+        </nav>
     </header>
 
+    <section class="hero">
+        <h1>Premium Design Assets. Totally Free.</h1>
+        <p>High-resolution textures, overlays, and mockups for your next creative project.</p>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search assets (e.g., Grunge Concrete)...">
+            <button id="searchBtn">Search</button>
+        </div>
+    </section>
+
+    <section class="categories-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Textures">Textures</button>
+        <button class="filter-btn" data-filter="Backgrounds">Backgrounds</button>
+        <button class="filter-btn" data-filter="Mockups">Mockups</button>
+        <button class="filter-btn" data-filter="PNG Assets">PNG Assets</button>
+    </section>
+
     <main>
-        <div class="ad-container"></div> <div id="assetGrid" class="asset-grid"></div>
+        <div class="section-header">
+            <h2>Trending Assets</h2>
+            <div class="sort-options">
+                <select id="sortSelect">
+                    <option value="newest">Newest</option>
+                    <option value="popular">Most Downloaded</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="assetGrid" class="asset-grid">
+            </div>
+        
+        <div id="loading" class="hidden">Loading more assets...</div>
     </main>
 
+    <section class="newsletter">
+        <h2>Never miss a new asset</h2>
+        <form id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
     <footer>
-        <section class="newsletter">
-            <h2>Never miss a new asset</h2>
-            <form id="newsletterForm"><input type="email" placeholder="Email"><button>Subscribe</button></form>
-        </section>
-        <div>&copy; 2026 Free Assets Hub</div>
+        <div class="footer-links">
+            <a href="#">About</a>
+            <a href="#">License</a>
+            <a href="#">Contact</a>
+        </div>
+        <p>&copy; 2026 Free Assets Hub. Built for creators.</p>
     </footer>
 
     <script src="script.js"></script>
